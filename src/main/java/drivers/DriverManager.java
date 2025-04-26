@@ -1,4 +1,4 @@
-package com.SprintDemo.drivers;
+package drivers;
 
 //import com.SprintDemo.utilites.LogsUtil;
 import org.openqa.selenium.WebDriver;

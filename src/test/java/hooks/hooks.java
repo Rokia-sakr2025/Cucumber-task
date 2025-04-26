@@ -1,11 +1,11 @@
-package com.SprintDemo.hooks;
-import com.SprintDemo.drivers.DriverManager;
-import com.SprintDemo.utilites.BrowserActions;
+package hooks;
+//import com.SprintDemo.drivers.DriverManager;
+//import com.SprintDemo.utilites.BrowserActions;
+import drivers.DriverManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.BeforeTest;
+import utilites.BrowserActions;
 
 
 public class hooks
@@ -23,7 +23,7 @@ public class hooks
         @After
         public void tearDown() {
 
-            //driver.quit();
+            driver.quit();
         }
 
 

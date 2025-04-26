@@ -1,4 +1,4 @@
-package com.SprintDemo.utilites;
+package utilites;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;

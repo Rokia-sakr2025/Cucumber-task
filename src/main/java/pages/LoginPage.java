@@ -1,24 +1,27 @@
-package com.SprintDemo.pages;
-import com.SprintDemo.utilites.*;
+package pages;
+import utilites.*;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
-import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import utilites.BrowserActions;
+import utilites.Scrolling;
+import utilites.elementActions;
+import utilites.wait;
 
 import java.util.List;
 
 
-public class loginPage
+public class LoginPage
 {
     private WebDriver driver;
     public static String UserName;
-    public loginPage(WebDriver driver) {
+    public LoginPage(WebDriver driver) {
         this.driver = driver;
     }
-    private final By USERNAME=By.xpath("//input[@placeholder='Username']");
-    private final By PASSWORD=By.xpath("//input[@placeholder='Password']");
+    private final By USERNAME=By.name("username");
+    private final By PASSWORD=By.name("password");
     private  final  By LOGINBTN=By.cssSelector("button[type='submit']");
     private final By Adminpage=By.xpath("//span[text()='Admin']");
 
@@ -30,7 +33,8 @@ public class loginPage
     private final By StatusIcon=By.xpath("//label[text()='Status']/following::i[contains(@class, 'oxd-icon')][1]");
     private  final By selectEnabledStatus=By.xpath("//div[starts-with(@class, 'oxd-select-option')]//span[text()='Enabled']");
     private  final By employessname=By.cssSelector("input[placeholder='Type for hints...']");
-    private final By selectEmployeeOrangeName=By.xpath("//div[@class='oxd-autocomplete-option']//span[text()='sww  test'][1]");
+  //  private final By selectEmployeeOrangeName=By.xpath("//div[@class='oxd-autocomplete-option']//span[text()='sww  test'][1]");
+    private final By selectEmployeeOrangeName=By.xpath("//div[@role='listbox']//div[contains(@class, 'oxd-autocomplete-option')][1]//span");
     private final By UserNameL=By.xpath("(//input[@class='oxd-input oxd-input--active'])[2]");
     private final By newpassword=By.xpath("(//input[@type='password'])[1]");
     private final By confirmpassword=By.xpath("//label[text()='Confirm Password']/following::input[@type='password']");
@@ -49,7 +53,7 @@ public class loginPage
   public void checkSucessLogin(String url)
   {
       wait.waitForSec(driver,20);
-     System.out.println("hello currentURL is  "+BrowserActions.getCurrentURL(driver));
+     System.out.println("hello currentURL is  "+ BrowserActions.getCurrentURL(driver));
       Assert.assertTrue(BrowserActions.getCurrentURL(driver).contains(url),"URL IS wrong,and login failed");
   }
   public int getNoOFRecords()
@@ -59,7 +63,6 @@ public class loginPage
       elementActions.ClickByJavaScript(driver,Adminpage);
       List<WebElement> records = driver.findElements(By.cssSelector(".oxd-table-card"));
       int intialcountNOofRecords=records.size();
-     // System.out.println(" current record count is "+intialcountNOofRecords);
       return intialcountNOofRecords;
   }
   public void AddNewRecord(String employesname) throws InterruptedException {
@@ -79,9 +82,9 @@ public class loginPage
       wait.WaitForElementVisible(driver,StatusIcon);
       wait.WaitForElementClickable(driver,StatusIcon);
       elementActions.clickByaActionClass(driver,StatusIcon);
-//  elementActions.clickElement(driver,StatusIcon);
       elementActions.clickElement(driver,selectEnabledStatus);
   elementActions.sendData(driver,employessname,employesname);
+  wait.WaitForElementVisible(driver,selectEmployeeOrangeName);
   elementActions.clickElement(driver,selectEmployeeOrangeName);
   elementActions.sendData(driver,UserNameL,UserName);
   elementActions.sendData(driver,newpassword,Password);

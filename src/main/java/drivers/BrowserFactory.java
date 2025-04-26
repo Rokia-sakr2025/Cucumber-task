@@ -1,5 +1,6 @@
 
-package com.SprintDemo.drivers;;
+package drivers;
+
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,6 +11,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.util.Map;
+
+;
 
 public class BrowserFactory {
     public static WebDriver getBrowser(String BrowserName) {

@@ -1,4 +1,4 @@
-package com.SprintDemo.utilites;
+package utilites;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
